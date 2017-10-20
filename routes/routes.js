@@ -28,15 +28,16 @@ module.exports = function(app) {
 	});
 	
 	app.get('/api/getLogs/:proc_idx', function(req, res) {
+		let returnVal = [];
 		forever.tail(req.params.proc_idx, {length: default_log_fetch_size}, function (err, data) {
 			if (err) {
-				console.log('Error running `forever.list()`');
 				console.dir(err);
 			}
-			console.log('Data returned from `forever.list()`');
-			console.dir(data);
-			res.json(data);
+			returnVal.push(data);
 		});
+		setTimeout( () => {
+			res.json(returnVal);
+		}, 1000);
 	});
 	
 	app.get('/api/stopProc/:proc_idx', function(req, res) {
