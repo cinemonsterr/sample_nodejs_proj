@@ -117,8 +117,10 @@ function refreshTable(self, NgTableParams, dataset) {
 	if (Array.isArray(dataset)) {
 		dataset.forEach((proc, idx) => {
 			let tmp = proc.file.split("/");
-            if (tmp.length > 2) proc.file = tmp.pop();
-            if (tmp.length > 1) proc.cwd = tmp.join('/');
+            if (tmp.length > 2) {
+				proc.file = tmp.pop();
+				if (tmp.length > 1) proc.cwd = tmp.join('/');
+			}
 			procs.push({
 				index: idx,
 				uid: proc.uid,
