@@ -39,7 +39,7 @@
 					  <td data-title="'Exec File'" sortable="'file'" filter="{file: 'text'}">{{proc.file}}</td>
 					  <td data-title="'Process ID'" sortable="'pid'" filter="{pid: 'text'}">{{proc.pid}}</td>
 					  <td data-title="'Start Time'" sortable="'created_at'" filter="{ created_at: 'text'}" filter-data="created_at">{{proc.created_at  | date:'medium'}}</td>
-					  <td data-title="'Status'" sortable="'proc_status'" filter="{proc_status: 'text'}"><span class="{{proc.proc_status}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+					  <td data-title="'Status'" sortable="'proc_status'" filter="{proc_status: 'text'}" align="center"><span class="{{proc.proc_status}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
 					  <td data-title="'Control'">
 						<button ng-click="stopProc(proc.index)">stop</button>
 						<button ng-click="restartProc(proc.index, proc.file)">restart</button>

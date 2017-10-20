@@ -33,7 +33,7 @@ module.exports = function(app) {
 			if (err) {
 				console.dir(err);
 			}
-			returnVal.push(data);
+			returnVal.unshift(data);
 		});
 		setTimeout( () => {
 			//console.log(returnVal);
