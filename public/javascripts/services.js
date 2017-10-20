@@ -15,6 +15,14 @@ angular.module('MonitorApp.services', [])
 			return $http.get('/api/startProc/' + file);
 		};
 		
+		service.execCmd = (branch, cwd) => {
+			return $http({
+				method: 'GET',
+				params: {branch, cwd},
+				url: '/api/execCmd'
+			});	
+		};
+		
 		service.startScript = (file) => {
 			return $http({
 				method: 'GET',
@@ -32,23 +40,7 @@ angular.module('MonitorApp.services', [])
 		};
 		
 		
-		var config = {
-			headers : {
-				'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-			}
-		};
-
-		service.save = (data) => {
-			return $http({
-				method: 'POST',
-				data: data,
-				url: '/api/movieInfos'
-			});			
-		};
 		
-		service.del = (id) => {
-			return $http.delete('/api/movieInfos/' + id);
-		};
 		
 		return service;
 	}]);

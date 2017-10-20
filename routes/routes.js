@@ -4,6 +4,7 @@ const datePattern = 'yyyy-MM-dd';
 const default_log_fetch_size = 100;
 const exec = require('child_process').exec;
 const app_path = '/home/bitnami/apps';
+const git_cmd = 'sudo git pull origin ';
 //const app_path = '/home/ubuntu/apps';
 require('datejs');
 
@@ -61,6 +62,17 @@ module.exports = function(app) {
 		res.json('success');
 	});
 	
+	app.get('/api/execCmd', function(req, res) {
+		var cwd = req.query.cwd, cmd = git_cmd + req.query.branch;
+		exec(cmd, {cwd}, (err, stdout, stderr) => {
+		  if (err) {
+			// node couldn't execute the command
+			return;
+		  }
+		  res.json(stdout.split(/\n/));
+		});
+	});
+	
 	app.get('/api/getProjects', function(req, res) {
 		exec('ls '+ app_path, (err, stdout, stderr) => {
 		  if (err) {
@@ -68,9 +80,6 @@ module.exports = function(app) {
 			return;
 		  }
 		  res.json(stdout.split(/\s+/));
-		  // the *entire* stdout and stderr (buffered)
-		  
-		  //console.log(`stderr: ${stderr}`);
 		});
 	});
 	
@@ -87,39 +96,4 @@ module.exports = function(app) {
 		});
 	});
 };
-/*
-	// create todo and send back all todos after creation
-	app.post('/api/todos', function(req, res) {
 
-		// create a todo, information comes from AJAX request from Angular
-		Todo.create({
-			text : req.body.text,
-			done : false
-		}, function(err, todo) {
-			if (err)
-				res.send(err);
-
-			// get and return all the todos after you create another
-			getTodos(res);
-		});
-
-	});
-
-	// delete a todo
-	app.delete('/api/todos/:todo_id', function(req, res) {
-		Todo.remove({
-			_id : req.params.todo_id
-		}, function(err, todo) {
-			if (err)
-				res.send(err);
-
-			getTodos(res);
-		});
-	});
-
-	// application -------------------------------------------------------------
-	app.get('*', function(req, res) {
-		res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-	});
-};
-*/

@@ -46,7 +46,9 @@
 					  <td data-title="'Process ID'" sortable="'pid'" >{{proc.pid}}</td>
 					  <td data-title="'Start Time'" sortable="'created_at'" filter="{ created_at: 'text'}" filter-data="created_at">{{proc.created_at  | date:'medium'}}</td>
 					  <td data-title="'Status'" sortable="'proc_status'"  align="center"><span class="{{proc.proc_status}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
-					  <td data-title="'Control'">
+					  <td data-title="'Branch'" ><input type="text" ng-model="proc.branch"></input></td>
+					  <td data-title="'Control'">				
+						<button ng-click="execCmd(proc.branch, proc.cwd)">update</button>
 						<button ng-click="stopProc(proc.index)">stop</button>
 						<button ng-click="restartProc(proc.index, proc.file)">restart</button>
 						<button ng-click="tailLogs(proc.index)">tail</button>

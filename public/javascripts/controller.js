@@ -36,6 +36,13 @@ angular.module('MonitorApp.controllers', [])
 			$scope.getProjects();
 		};
 		
+		$scope.execCmd = (branch, cwd) => {
+			$scope.status = 'pending';
+			dataFactory.execCmd(branch, cwd).then(function(logs) {
+				$scope.status = 'success';
+			});
+		};
+		
 		$scope.tailLogs = (idx) => {
 			dataFactory.tailLogs(idx).then(function(logs) {
 				//console.logs(logs);
@@ -95,6 +102,8 @@ function refreshTable(self, NgTableParams, dataset) {
 				index: idx,
 				uid: proc.uid,
 				command: proc.command,
+				cwd: proc.sourceDir,
+				branch: 'master',
 				file: proc.file,
 				created_at: new Date(proc.ctime),
 				foreverPid: proc.foreverPid,
