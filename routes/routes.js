@@ -37,7 +37,7 @@ module.exports = function(app) {
 			if (err) {
 				console.dir(err);
 			}
-			returnVal.unshift(data);
+			returnVal.push(data);
 		});
 		setTimeout( () => {
 			//console.log(returnVal);
@@ -69,6 +69,7 @@ module.exports = function(app) {
 			// node couldn't execute the command
 			return;
 		  }
+			console.log(stdout);
 		  res.json(stdout.split(/\n/));
 		});
 	});

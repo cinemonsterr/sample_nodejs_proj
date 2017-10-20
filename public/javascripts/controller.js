@@ -39,6 +39,10 @@ angular.module('MonitorApp.controllers', [])
 		$scope.execCmd = (branch, cwd) => {
 			$scope.status = 'pending';
 			dataFactory.execCmd(branch, cwd).then(function(logs) {
+				if (Array.isArray(logs.data)) {
+                                        logs.data = logs.data.reverse();
+                                }
+				console.log(logs);
 				$scope.logs = logs;
 				$scope.status = 'success';
 			});
@@ -46,8 +50,11 @@ angular.module('MonitorApp.controllers', [])
 		
 		$scope.tailLogs = (idx) => {
 			dataFactory.tailLogs(idx).then(function(logs) {
+				if (Array.isArray(logs.data)) {
+                                        logs.data = logs.data.map((s,i) => (i + ". ").padStart(6, "0") +  s.line).reverse();
+                                }
 				//console.logs(logs);
-				$scope.logs = logs;
+				$scope.logs = logs.data;
 			});
 		};
 		
@@ -103,7 +110,7 @@ function refreshTable(self, NgTableParams, dataset) {
 				index: idx,
 				uid: proc.uid,
 				command: proc.command,
-				cwd: proc.sourceDir,
+				cwd: proc.sourceDir.replace('/opt/','/home/'),
 				branch: 'master',
 				file: proc.file,
 				created_at: new Date(proc.ctime),

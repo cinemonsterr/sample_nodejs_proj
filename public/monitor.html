@@ -41,7 +41,7 @@
 			<div class="box d">
 				<table ng-table="ctrl.defaultConfigTableParams" class="table  table-bordered ">
 					<tr ng-repeat="proc in $data">
-					  <td data-title="'Command'" sortable="'command'" filter="{command: 'text'}">{{proc.command}}</td>
+					  <td data-title="'Working Dir'" sortable="'cwd'" filter="{cwd: 'text'}">{{proc.cwd}}</td>
 					  <td data-title="'Exec File'" sortable="'file'" filter="{file: 'text'}">{{proc.file}}</td>
 					  <td data-title="'Process ID'" sortable="'pid'" >{{proc.pid}}</td>
 					  <td data-title="'Start Time'" sortable="'created_at'" filter="{ created_at: 'text'}" filter-data="created_at">{{proc.created_at  | date:'medium'}}</td>
@@ -61,7 +61,7 @@
 					<li ng-repeat="log in logs.data">{{log.line}}</li>
 				</ul-->
 				<div class="container">
-					<div class="inner" ng-repeat="log in logs.data">{{log.line}}</div>
+					<div class="inner" ng-repeat="log in logs">{{log}}</div>
 				</div>
 			</div>
 	</body>
