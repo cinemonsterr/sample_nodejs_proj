@@ -54,7 +54,7 @@ module.exports = function(app) {
 	});
 	
 	app.get('/api/getProjects', function(req, res) {
-		exec('ls '+ app_path), (err, stdout, stderr) => {
+		exec('ls '+ app_path, (err, stdout, stderr) => {
 		  if (err) {
 			// node couldn't execute the command
 			return;
