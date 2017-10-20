@@ -10,7 +10,7 @@ angular.module('MonitorApp.controllers', [])
 			});
 		};
 		$scope.getScripts = () => {
-			dataFactory.getScript($scope.selectedProj).then( (response) => {
+			dataFactory.getScripts($scope.selectedProj).then( (response) => {
 				$scope.scripts = response.data;
 			});
 		};
