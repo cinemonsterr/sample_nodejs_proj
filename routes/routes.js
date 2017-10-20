@@ -3,7 +3,8 @@ var forever = require('forever');
 const datePattern = 'yyyy-MM-dd';
 const default_log_fetch_size = 100;
 const exec = require('child_process').exec;
-const app_path = '/home/ubuntu/apps';
+const app_path = '/home/bitnami/apps';
+//const app_path = '/home/ubuntu/apps';
 require('datejs');
 
 const mongoose_options = {

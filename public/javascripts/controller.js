@@ -2,10 +2,11 @@ angular.module('MonitorApp.controllers', [])
 	.controller('MonitorController', ['$scope', 'dataFactory', 'NgTableParams', function($scope, dataFactory, NgTableParams) {
 		let self = this;
 		console.log('for monitoring running apps!');
-		$scope.description = "You can monitor your daemon application processes";
+		$scope.description = "Monitor your daemon application processes";
 		$scope.processes, $scope.selectedProj;
 		$scope.getProjects = () => {
 			dataFactory.getProjects().then( (response) => {
+				//console.log(`projects: ${response.data}`);
 				$scope.projects = response.data;
 			});
 		};

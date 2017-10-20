@@ -19,7 +19,6 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css"><!-- load bootstrap -->
 		<link rel="stylesheet" href="/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/css/app.css">
-
     </head>
     <body ng-controller="MonitorController as ctrl" >
 		<div class="wrapper">
@@ -44,9 +43,9 @@
 					<tr ng-repeat="proc in $data">
 					  <td data-title="'Command'" sortable="'command'" filter="{command: 'text'}">{{proc.command}}</td>
 					  <td data-title="'Exec File'" sortable="'file'" filter="{file: 'text'}">{{proc.file}}</td>
-					  <td data-title="'Process ID'" sortable="'pid'" filter="{pid: 'text'}">{{proc.pid}}</td>
+					  <td data-title="'Process ID'" sortable="'pid'" >{{proc.pid}}</td>
 					  <td data-title="'Start Time'" sortable="'created_at'" filter="{ created_at: 'text'}" filter-data="created_at">{{proc.created_at  | date:'medium'}}</td>
-					  <td data-title="'Status'" sortable="'proc_status'" filter="{proc_status: 'text'}" align="center"><span class="{{proc.proc_status}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+					  <td data-title="'Status'" sortable="'proc_status'"  align="center"><span class="{{proc.proc_status}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
 					  <td data-title="'Control'">
 						<button ng-click="stopProc(proc.index)">stop</button>
 						<button ng-click="restartProc(proc.index, proc.file)">restart</button>
@@ -56,9 +55,12 @@
 				</table>
 			</div>	
 			<div class="box e">
-				<ul class="no_dot">
+				<!--ul id="logging_area" class="no_dot">
 					<li ng-repeat="log in logs.data">{{log.line}}</li>
-				</ul>
+				</ul-->
+				<div class="container">
+					<div class="inner" ng-repeat="log in logs.data">{{log.line}}</div>
+				</div>
 			</div>
 	</body>
 	
