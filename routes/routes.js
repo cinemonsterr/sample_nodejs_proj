@@ -49,6 +49,7 @@ module.exports = function(app) {
 	});
 	
 	app.get('/api/startProc/:file', function(req, res) {
+		console.log(req.params.file);
 		forever.startDaemon(req.params.file, {});
 		res.json('success');
 	});
