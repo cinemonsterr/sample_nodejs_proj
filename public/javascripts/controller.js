@@ -3,7 +3,27 @@ angular.module('MonitorApp.controllers', [])
 		let self = this;
 		console.log('for monitoring running apps!');
 		$scope.description = "You can monitor your daemon application processes";
-		$scope.processes;
+		$scope.processes, $scope.selectedProj;
+		$scope.getProjects = () => {
+			dataFactory.getProjects().then( (response) => {
+				$scope.projects = response.data;
+			});
+		};
+		$scope.getScripts = () => {
+			dataFactory.getScript($scope.selectedProj).then( (response) => {
+				$scope.scripts = response.data;
+			});
+		};
+		
+		$scope.startScript = () => {
+			dataFactory.startProc(_app_path + $scope.selectedProj + '/' + $scope.selectedScript).then( (response) => {
+				setTimeout( () => {
+					$scope.refresh();
+					$scope.status = response;							
+				}, 1000);
+			});
+		};
+		
 		$scope.refresh = () => {
 			$scope.status = 'pending';
 			dataFactory.listAllProcesses().then(function(response) {				
@@ -11,6 +31,7 @@ angular.module('MonitorApp.controllers', [])
 				refreshTable(self, NgTableParams, $scope.processes);					
 				$scope.status = 'success';
 			});
+			$scope.getProjects();
 		};
 		
 		$scope.tailLogs = (idx) => {

@@ -15,13 +15,15 @@ angular.module('MonitorApp.services', [])
 			return $http.get('/api/startProc/' + file);
 		};
 		
-		service.omdbIDSearch = (imdb_ID) => {
-			return $http({
-				method: 'GET',
-				params: {imdb_ID: imdb_ID},
-				url: '/api/getMovieInfoById'
-			});
+		service.getProjects = () => {
+			return $http.get('/api/getProjects');
 		};
+		
+		service.getScripts = (selectedProj) => {
+			return $http.get('/api/getScript/'+selectedProj);
+		};
+		
+		
 		var config = {
 			headers : {
 				'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'

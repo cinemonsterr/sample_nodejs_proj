@@ -2,6 +2,8 @@ const mode_switch = 'shaw';
 var forever = require('forever');
 const datePattern = 'yyyy-MM-dd';
 const default_log_fetch_size = 100;
+const exec = require('child_process').exec;
+const app_path = '/home/ubuntu/apps';
 require('datejs');
 
 const mongoose_options = {
@@ -49,6 +51,32 @@ module.exports = function(app) {
 	app.get('/api/startProc/:file', function(req, res) {
 		forever.startDaemon(req.params.file, {});
 		res.json('success');
+	});
+	
+	app.get('/api/getProjects', function(req, res) {
+		exec('ls '+ app_path), (err, stdout, stderr) => {
+		  if (err) {
+			// node couldn't execute the command
+			return;
+		  }
+		  res.json(stdout.split(/\s+/));
+		  // the *entire* stdout and stderr (buffered)
+		  
+		  //console.log(`stderr: ${stderr}`);
+		});
+	});
+	
+	app.get('/api/getScript/:project_name', function(req, res) {
+		exec('ls '+ app_path + req.params.project_name), (err, stdout, stderr) => {
+		  if (err) {
+			// node couldn't execute the command
+			return;
+		  }
+		  res.json(stdout.split(/\s+/));
+		  // the *entire* stdout and stderr (buffered)
+		  
+		  //console.log(`stderr: ${stderr}`);
+		});
 	});
 };
 /*

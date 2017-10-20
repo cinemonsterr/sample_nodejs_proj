@@ -30,7 +30,14 @@
 				{{status}}
 			</div>
 			<div class="box c">
-				&nbsp;
+				<select ng-model="selectedProj">
+					<option ng-repeat="proj in projects">{{proj}}</option>
+				</select>
+				<button ng-click="getScripts()">select script</button>
+				<select ng-model="selectedScript">
+					<option ng-repeat="script in scripts">{{script}}</option>
+				</select>
+				<button ng-click="startScript()">start</button>				
 			</div>
 			<div class="box d">
 				<table ng-table="ctrl.defaultConfigTableParams" class="table  table-bordered ">
