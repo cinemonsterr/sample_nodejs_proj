@@ -5,6 +5,7 @@ const default_log_fetch_size = 100;
 const exec = require('child_process').exec;
 const app_path = '/home/bitnami/apps';
 const git_cmd = 'sudo git pull origin ';
+const forever_start_cmd = 'forever start ';
 //const app_path = '/home/ubuntu/apps';
 require('datejs');
 
@@ -50,6 +51,11 @@ module.exports = function(app) {
 		res.json('success');
 	});
 	
+	app.get('/api/restartProc/:proc_idx', function(req, res) {
+		forever.restart(req.params.proc_idx);
+		res.json('success');
+	});
+	
 	app.get('/api/startProc/:file', function(req, res) {
 		console.log(req.params.file);
 		forever.startDaemon(req.params.file, {});
@@ -57,7 +63,17 @@ module.exports = function(app) {
 	});
 	
 	app.get('/api/startScript', function(req, res) {
-		console.log(req.query.file);
+		console.log(req.query.file, req.query.proj);
+		var filename = req.query.file.split("/").pop();
+		var cwd = app_path + req.query.proj, cmd = forever_start_cmd + filename;
+		exec(cmd, {cwd}, (err, stdout, stderr) => {
+		  if (err) {
+			// node couldn't execute the command
+			return;
+		  }
+			console.log(stdout);
+		  res.json(stdout.split(/\n/));
+		});
 		forever.startDaemon(req.query.file, {});
 		res.json('success');
 	});

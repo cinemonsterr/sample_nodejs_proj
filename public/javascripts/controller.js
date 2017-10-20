@@ -18,7 +18,7 @@ angular.module('MonitorApp.controllers', [])
 		};
 		
 		$scope.startScript = () => {
-			dataFactory.startScript($scope.selectedScript).then( (response) => {
+			dataFactory.startScript($scope.selectedScript, $scope.selectedProj).then( (response) => {
 				setTimeout( () => {
 					$scope.refresh();
 					$scope.status = response;							
@@ -66,6 +66,16 @@ angular.module('MonitorApp.controllers', [])
 			});
 		};
 		
+		$scope.restartProc = (idx) => {
+			$scope.status = 'pending';
+			dataFactory.restartProc(idx).then(function(response) {
+				$scope.refresh();
+				$scope.status = response;
+			});
+		};
+		
+		
+		/*
 		$scope.restartProc = (idx, file) => {
 			$scope.status = 'pending';
 			dataFactory.stopProc(idx).then(function(response) {
@@ -77,7 +87,7 @@ angular.module('MonitorApp.controllers', [])
 				});
 			});
 		};
-		
+		*/
 		/*
 		
 		

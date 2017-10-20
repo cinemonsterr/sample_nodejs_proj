@@ -11,6 +11,10 @@ angular.module('MonitorApp.services', [])
 			return $http.get('/api/stopProc/' + idx);
 		};
 		
+		service.restartProc = (idx) => {
+			return $http.get('/api/restartProc/' + idx);
+		};
+		
 		service.startProc = (file) => {
 			return $http.get('/api/startProc/' + file);
 		};
@@ -23,10 +27,10 @@ angular.module('MonitorApp.services', [])
 			});	
 		};
 		
-		service.startScript = (file) => {
+		service.startScript = (file, proj) => {
 			return $http({
 				method: 'GET',
-				params: {file},
+				params: {file, proj},
 				url: '/api/startScript'
 			});	
 		};
