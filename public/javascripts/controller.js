@@ -50,7 +50,7 @@ angular.module('MonitorApp.controllers', [])
 			});
 		};
 		
-		$scope.restartProc = (file, idx) => {
+		$scope.restartProc = (idx, file) => {
 			$scope.status = 'pending';
 			dataFactory.stopProc(idx).then(function(response) {
 				dataFactory.startScript(file).then( (response) => {
