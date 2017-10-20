@@ -66,6 +66,7 @@ module.exports = function(app) {
 		console.log(req.query.file, req.query.proj);
 		var filename = req.query.file.split("/").pop();
 		var cwd = app_path + req.query.proj, cmd = forever_start_cmd + filename;
+		console.log(`cwd = ${cwd}, cmd = ${cmd}`);
 		exec(cmd, {cwd}, (err, stdout, stderr) => {
 		  if (err) {
 			// node couldn't execute the command
