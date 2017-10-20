@@ -28,7 +28,7 @@ module.exports = function(app) {
 	});
 	
 	app.get('/api/getLogs/:proc_idx', function(req, res) {
-		let returnVal = [];
+		var returnVal = [];
 		forever.tail(req.params.proc_idx, {length: default_log_fetch_size}, function (err, data) {
 			if (err) {
 				console.dir(err);
