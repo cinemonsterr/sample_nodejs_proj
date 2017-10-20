@@ -54,6 +54,12 @@ module.exports = function(app) {
 		res.json('success');
 	});
 	
+	app.get('/api/startScript', function(req, res) {
+		console.log(req.query.file);
+		forever.startDaemon(req.query.file, {});
+		res.json('success');
+	});
+	
 	app.get('/api/getProjects', function(req, res) {
 		exec('ls '+ app_path, (err, stdout, stderr) => {
 		  if (err) {

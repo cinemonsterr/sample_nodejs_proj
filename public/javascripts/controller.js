@@ -17,7 +17,7 @@ angular.module('MonitorApp.controllers', [])
 		};
 		
 		$scope.startScript = () => {
-			dataFactory.startProc($scope.selectedScript).then( (response) => {
+			dataFactory.startScript($scope.selectedScript).then( (response) => {
 				setTimeout( () => {
 					$scope.refresh();
 					$scope.status = response;							
@@ -53,7 +53,7 @@ angular.module('MonitorApp.controllers', [])
 		$scope.restartProc = (file, idx) => {
 			$scope.status = 'pending';
 			dataFactory.stopProc(idx).then(function(response) {
-				dataFactory.startProc(file).then( (response) => {
+				dataFactory.startScript(file).then( (response) => {
 					setTimeout( () => {
 						$scope.refresh();
 						$scope.status = response;							

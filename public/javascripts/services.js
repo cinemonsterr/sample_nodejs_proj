@@ -15,6 +15,14 @@ angular.module('MonitorApp.services', [])
 			return $http.get('/api/startProc/' + file);
 		};
 		
+		service.startScript = (file) => {
+			return $http({
+				method: 'GET',
+				params: {file},
+				url: '/api/startScript'
+			});	
+		};
+		
 		service.getProjects = () => {
 			return $http.get('/api/getProjects');
 		};
