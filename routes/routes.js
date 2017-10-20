@@ -36,8 +36,9 @@ module.exports = function(app) {
 			returnVal.push(data);
 		});
 		setTimeout( () => {
+			console.log(returnVal);
 			res.json(returnVal);
-		}, 1000);
+		}, 1500);
 	});
 	
 	app.get('/api/stopProc/:proc_idx', function(req, res) {
