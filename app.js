@@ -38,6 +38,7 @@ app.set('view engine', 'html'); // set engine as html
 
 //---handle routes
 app.use('/', index);
+require('./routes/routes.js')(app);
 app.listen(4500, function () {
   console.log('Example app listening on port 4500!')
 });

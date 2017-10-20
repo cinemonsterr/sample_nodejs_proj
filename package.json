@@ -9,14 +9,16 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "datejs": "~1.0.0-rc3",
+    "debug": "~3.1.0",
+    "ejs": "~2.5.7",
+    "express": "~4.16.2",
+    "forever": "^0.15.3",
+    "forever-monitor": "^1.7.1",
     "morgan": "~1.9.0",
     "path": "~0.12.7",
-    "express": "~4.16.2",
-    "serve-favicon": "~2.4.5",
-    "cookie-parser": "~1.4.3",
-    "body-parser": "~1.18.2",
-    "datejs": "~1.0.0-rc3",
-    "ejs": "~2.5.7",
-    "debug": "~3.1.0"
+    "serve-favicon": "~2.4.5"
   }
 }

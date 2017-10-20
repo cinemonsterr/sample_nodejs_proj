@@ -1,0 +1,58 @@
+<html ng-app="MonitorApp">
+    <head>
+		<!-- META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+        <title>Process monitor</title>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-aria/angular-aria.js"></script>
+		<script src="bower_components/angular-animate/angular-animate.js"></script>
+		<script src="bower_components/angular-material/angular-material.js"></script>
+		<script type="text/javascript" src="javascripts/angular/ng-table.min.js"></script>
+		<script src="bower_components/DateJS/build/date.js"></script>
+		<script src="javascripts/jquery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="javascripts/frontend_consts.js"></script>
+        <script type="text/javascript" src="javascripts/app.js"></script>
+		<script type="text/javascript" src="javascripts/services.js"></script>
+        <script type="text/javascript" src="javascripts/controller.js"></script>
+         
+		<link rel="stylesheet" href="/css/bootstrap.min.css"><!-- load bootstrap -->
+		<link rel="stylesheet" href="/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/css/app.css">
+
+    </head>
+    <body ng-controller="MonitorController as ctrl" >
+		<div class="wrapper">
+			<div class="box a">
+					{{description}}
+			</div>
+			<div class="box b">
+				{{status}}
+			</div>
+			<div class="box c">
+				&nbsp;
+			</div>
+			<div class="box d">
+				<table ng-table="ctrl.defaultConfigTableParams" class="table  table-bordered ">
+					<tr ng-repeat="proc in $data">
+					  <td data-title="'Command'" sortable="'command'" filter="{command: 'text'}">{{proc.command}}</td>
+					  <td data-title="'Exec File'" sortable="'file'" filter="{file: 'text'}">{{proc.file}}</td>
+					  <td data-title="'Process ID'" sortable="'pid'" filter="{pid: 'text'}">{{proc.pid}}</td>
+					  <td data-title="'Start Time'" sortable="'created_at'" filter="{ created_at: 'text'}" filter-data="created_at">{{proc.created_at  | date:'medium'}}</td>
+					  <td data-title="'Status'" sortable="'status'" filter="{status: 'text'}"><span class="{{status}}">&nbsp;</span></td>
+					  <td data-title="'Control'">
+						<button ng-click="stopProc(proc.index)">stop</button>
+						<button ng-click="restartProc(proc.index, proc.file)">restart</button>
+						<button ng-click="tailLogs(proc.index)">tail</button>
+					  </td>
+					</tr>
+				</table>
+			</div>	
+			<div class="box d">
+				<ul>
+					<li ng-repeat="log in $logs">{{log.line}}</li>
+				</ul>
+			</div>
+	</body>
+	
+</html>
