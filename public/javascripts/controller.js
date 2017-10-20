@@ -15,6 +15,7 @@ angular.module('MonitorApp.controllers', [])
 		
 		$scope.tailLogs = (idx) => {
 			dataFactory.tailLogs(idx).then(function(logs) {
+				//console.logs(logs);
 				$scope.logs = logs;
 			});
 		};
@@ -77,7 +78,7 @@ function refreshTable(self, NgTableParams, dataset) {
 				args: proc.args,
 				pid: proc.pid,
 				logFile: proc.logFile,
-				status: proc.running?"running":"problem"
+				proc_status: proc.running?"running":"problem"
 			});
 		});
 	}

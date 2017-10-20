@@ -36,7 +36,7 @@ module.exports = function(app) {
 			returnVal.push(data);
 		});
 		setTimeout( () => {
-			console.log(returnVal);
+			//console.log(returnVal);
 			res.json(returnVal);
 		}, 1500);
 	});
