@@ -17,7 +17,7 @@ angular.module('MonitorApp.controllers', [])
 		};
 		
 		$scope.startScript = () => {
-			dataFactory.startProc(_app_path + $scope.selectedProj + '/' + $scope.selectedScript).then( (response) => {
+			dataFactory.startProc($scope.selectedScript).then( (response) => {
 				setTimeout( () => {
 					$scope.refresh();
 					$scope.status = response;							
