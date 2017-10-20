@@ -110,7 +110,7 @@ function refreshTable(self, NgTableParams, dataset) {
 				index: idx,
 				uid: proc.uid,
 				command: proc.command,
-				cwd: proc.sourceDir.replace('/opt/','/home/'),
+				cwd: proc.cwd.replace('/opt/','/home/'),
 				branch: 'master',
 				file: proc.file,
 				created_at: new Date(proc.ctime),
