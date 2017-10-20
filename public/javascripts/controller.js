@@ -39,6 +39,7 @@ angular.module('MonitorApp.controllers', [])
 		$scope.execCmd = (branch, cwd) => {
 			$scope.status = 'pending';
 			dataFactory.execCmd(branch, cwd).then(function(logs) {
+				$scope.logs = logs;
 				$scope.status = 'success';
 			});
 		};
