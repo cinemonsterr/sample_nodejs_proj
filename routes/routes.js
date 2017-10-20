@@ -67,7 +67,7 @@ module.exports = function(app) {
 	});
 	
 	app.get('/api/getScript/:project_name', function(req, res) {
-		exec('ls '+ app_path + req.params.project_name), (err, stdout, stderr) => {
+		exec('ls '+ app_path + req.params.project_name, (err, stdout, stderr) => {
 		  if (err) {
 			// node couldn't execute the command
 			return;
