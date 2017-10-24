@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
+const _admin_ = 'admin';
+const auth = require('../auth/auth_routes')(router, _admin_);
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+auth.get(_admin_)('/', function (req, res, next) {
+	console.log("mama");
 	res.render('index', {
 		title: 'Express'
 	});
 });
 
-router.get('/mon', function (req, res, next) {
-	res.render('mon');
-});
 
 module.exports = router;
 

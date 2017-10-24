@@ -1,0 +1,5 @@
+{
+	"application_name": "Process monitor",
+	"session_secret": "kjhl7546sd#$@#%ifWERu",
+	"DBConnStr": "mongodb://showtimeman:c0w4rdt4ke5411@localhost/showtime-scrape"
+}

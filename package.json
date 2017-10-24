@@ -9,17 +9,23 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "~1.18.2",
+    "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "datejs": "~1.0.0-rc3",
     "debug": "~3.1.0",
     "ejs": "~2.5.7",
     "express": "~4.16.2",
+    "express-session": "^1.15.6",
     "forever": "^0.15.3",
     "forever-monitor": "^1.7.1",
     "gmail-send": "^1.2.11",
+    "mongoose": "^4.12.4",
     "morgan": "~1.9.0",
     "node-schedule": "^1.2.5",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "path": "~0.12.7",
     "serve-favicon": "~2.4.5"
   }
